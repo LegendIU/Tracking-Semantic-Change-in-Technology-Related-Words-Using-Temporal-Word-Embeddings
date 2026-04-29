@@ -1,0 +1,5 @@
+group,period,cosine_distance
+control,2010s,9.934107462565104e-09
+control,2020s,0.49397338430086773
+target,2010s,0.0
+target,2020s,0.48803137242794037
