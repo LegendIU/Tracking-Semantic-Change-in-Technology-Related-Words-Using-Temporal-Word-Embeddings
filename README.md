@@ -147,6 +147,7 @@ figures/target_vs_control.png
 ├── app.py
 ├── README.md
 ├── RESULTS.md
+├── report.html
 ├── requirements.txt
 ├── data/
 │   ├── raw/
@@ -161,17 +162,18 @@ figures/target_vs_control.png
 │   ├── word2vec_2010s.model
 │   └── word2vec_2020s.model
 ├── notebooks/
+│   ├── final_case_study.ipynb
 │   ├── 01_data_preparation.ipynb
 │   ├── 02_train_embeddings.ipynb
 │   ├── 03_alignment_and_analysis.ipynb
 │   └── 04_visualizations.ipynb
-├── poster/
-│   └── poster_outline.md
 ├── results/
 │   ├── cosine_shift.csv
 │   ├── group_shift.csv
 │   ├── nearest_neighbors.csv
 │   └── neighbor_shift.csv
+├── scripts/
+│   └── merge_notebooks.py
 └── src/
     ├── alignment.py
     ├── metrics.py
