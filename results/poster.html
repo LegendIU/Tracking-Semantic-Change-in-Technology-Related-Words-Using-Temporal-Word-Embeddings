@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Temporal Semantic Shift Poster</title>
+
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    :root {
+      --bg: #79aeb3;
+      --panel: #f7f7f7;
+      --header: #244a5a;
+      --top: #163344;
+      --text: #1c1c1c;
+      --border: #2c3e46;
+      --accent: #2b6677;
+      --light: #e7f1f3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .poster {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 6mm;
+      overflow: hidden;
+    }
+
+    .top {
+      background: var(--top);
+      color: white;
+      padding: 6mm 6mm;
+      display: grid;
+      grid-template-columns: 1fr 110px;
+      align-items: center;
+      gap: 5mm;
+      margin-bottom: 4mm;
+    }
+
+    .title {
+      text-align: center;
+      padding-left: 10mm;
+    }
+
+    .title h1 {
+      margin: 0 0 6px 0;
+      font-size: 23px;
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    .title .author {
+      font-size: 13px;
+      color: #8ee0d2;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .title .subtitle {
+      font-size: 9px;
+      color: #d9f3ef;
+      margin-top: 5px;
+    }
+
+    .logo-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-box img {
+      max-width: 100%;
+      max-height: 72px;
+      object-fit: contain;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+
+    .section {
+      background: transparent;
+      margin-bottom: 3mm;
+    }
+
+    .section-title {
+      background: var(--header);
+      color: white;
+      font-weight: 900;
+      font-size: 11px;
+      text-align: center;
+      padding: 5px 9px;
+      border: 2px solid var(--header);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-top: none;
+      padding: 7px 9px;
+      font-size: 8.2px;
+      line-height: 1.22;
+    }
+
+    .panel p {
+      margin: 0 0 5px 0;
+    }
+
+    .panel ul {
+      margin: 4px 0 0 13px;
+      padding: 0;
+    }
+
+    .panel li {
+      margin-bottom: 3px;
+    }
+
+    .box {
+      background: white;
+      border: 1.4px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+    }
+
+    .box:last-child {
+      margin-bottom: 0;
+    }
+
+    .box-title {
+      font-weight: 900;
+      margin-bottom: 4px;
+      color: #1b2d35;
+      font-size: 8.6px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin-top: 4px;
+    }
+
+    .metric {
+      background: white;
+      border: 1.3px solid var(--border);
+      border-radius: 7px;
+      padding: 5px 3px;
+      text-align: center;
+    }
+
+    .metric .num {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .metric .lab {
+      font-size: 6.8px;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    .figure {
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .figure img {
+      width: 100%;
+      max-height: 126px;
+      object-fit: contain;
+      border: 1.2px solid #aaa;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.3px;
+      background: white;
+      margin-top: 4px;
+    }
+
+    th,
+    td {
+      border: 1px solid #777;
+      padding: 3px 5px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #e8eef0;
+      font-weight: 900;
+    }
+
+    .small {
+      font-size: 7.6px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--light);
+      border: 1px solid #8ba7b0;
+      padding: 2px 5px;
+      margin: 2px;
+      border-radius: 12px;
+      font-size: 7.2px;
+      font-weight: 800;
+      color: #163344;
+    }
+
+    .span-2 {
+      grid-column: span 2;
+    }
+
+    .footer-note {
+      font-size: 7.3px;
+      text-align: center;
+      color: #17303b;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+    }
+
+    .code {
+      background: #e7f1f3;
+      border: 1px solid #9ab5bc;
+      border-radius: 5px;
+      padding: 4px 5px;
+      font-family: Consolas, monospace;
+      font-size: 7.2px;
+      display: inline-block;
+      margin-top: 3px;
+    }
+
+    @media print {
+      body {
+        background: var(--bg);
+      }
+
+      .poster {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+      }
+
+      .section,
+      .box,
+      .panel {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="poster">
+
+    <!-- HEADER -->
+    <div class="top">
+      <div class="title">
+        <h1>Tracking Semantic Change in Technology-Related Words Using Temporal Word Embeddings</h1>
+        <div class="author">Galkin Vladislav</div>
+        <div class="subtitle">
+          News Category Dataset · Word2Vec Skip-gram · Orthogonal Procrustes Alignment · Streamlit Demo
+        </div>
+      </div>
+
+      <div class="logo-box">
+        <img src="../assets/left_logo.png" alt="Right logo">
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <div class="section">
+          <div class="section-title">Motivation</div>
+          <div class="panel">
+            <div class="box">
+              Word meanings change over time because technology, society, and media evolve.
+              Static word embeddings represent each word with a single vector and cannot directly capture
+              diachronic semantic change.
+            </div>
+            <div class="box">
+              This project uses temporal Word2Vec embeddings to analyze how selected words changed their
+              contexts between the <b>2010s</b> and the <b>2020s</b> in news texts.
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Dataset and Experimental Setup</div>
+          <div class="panel">
+            <div class="box">
+              <div class="box-title">Dataset</div>
+              <p><b>News Category Dataset</b></p>
+              <p class="small">
+                News headlines and short descriptions were merged into one text field.
+                Publication dates were converted into years.
+              </p>
+
+              <table>
+                <tr>
+                  <th>Period</th>
+                  <th>Years</th>
+                  <th>Documents</th>
+                </tr>
+                <tr>
+                  <td>2010s</td>
+                  <td>2012–2019</td>
+                  <td>19,249</td>
+                </tr>
+                <tr>
+                  <td>2020s</td>
+                  <td>2020–2022</td>
+                  <td>5,518</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Target and Control Words</div>
+
+              <p><b>Main target words:</b></p>
+              <span class="tag">model</span>
+              <span class="tag">network</span>
+              <span class="tag">platform</span>
+              <span class="tag">virus</span>
+
+              <p style="margin-top:5px;"><b>Additional target words:</b></p>
+              <span class="tag">web</span>
+              <span class="tag">stream</span>
+
+              <p style="margin-top:5px;"><b>Control words:</b></p>
+              <span class="tag">water</span>
+              <span class="tag">city</span>
+              <span class="tag">winter</span>
+              <span class="tag">animal</span>
+              <span class="tag">family</span>
+              <span class="tag">school</span>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Model Setup</div>
+              <table>
+                <tr><th>Parameter</th><th>Value</th></tr>
+                <tr><td>Model</td><td>Word2Vec Skip-gram</td></tr>
+                <tr><td>vector_size</td><td>100</td></tr>
+                <tr><td>window</td><td>5</td></tr>
+                <tr><td>min_count</td><td>5</td></tr>
+                <tr><td>epochs</td><td>10</td></tr>
+                <tr><td>seed</td><td>42</td></tr>
+                <tr><td>alignment</td><td>Orthogonal Procrustes</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Methodology</div>
+          <div class="panel">
+            <div class="box">
+              <div class="box-title">Pipeline</div>
+              <p class="small">
+                Corpus → Preprocessing → Time slicing → Word2Vec training →
+                Procrustes alignment → Cosine shift → Nearest neighbors
+              </p>
+            </div>
+
+            <div class="box">
+              <p class="small">
+                Separate embeddings were trained for each period. Since independently trained vector spaces
+                are not directly comparable, the spaces were aligned using Orthogonal Procrustes.
+                Semantic shift was measured as cosine distance from the base period.
+              </p>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Best Shift Scores</div>
+              <div class="metric-row">
+                <div class="metric">
+                  <div class="num">0.54</div>
+                  <div class="lab">model</div>
+                </div>
+                <div class="metric">
+                  <div class="num">0.53</div>
+                  <div class="lab">network</div>
+                </div>
+                <div class="metric">
+                  <div class="num">0.53</div>
+                  <div class="lab">platform</div>
+                </div>
+                <div class="metric">
+                  <div class="num">0.35</div>
+                  <div class="lab">virus</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Alignment Note</div>
+              <p class="small">
+                Target and control words were excluded from the anchor vocabulary during alignment
+                to avoid artificially reducing the measured semantic shift.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <div class="section">
+          <div class="section-title">Experimental Results</div>
+          <div class="panel">
+            <div class="box">
+              <div class="box-title">Main Quantitative Results</div>
+              <table>
+                <tr>
+                  <th>Word</th>
+                  <th>Cosine distance</th>
+                  <th>Interpretation</th>
+                </tr>
+                <tr>
+                  <td>model</td>
+                  <td>0.54</td>
+                  <td>Strong shift</td>
+                </tr>
+                <tr>
+                  <td>network</td>
+                  <td>0.53</td>
+                  <td>Strong shift</td>
+                </tr>
+                <tr>
+                  <td>platform</td>
+                  <td>0.53</td>
+                  <td>Strong shift</td>
+                </tr>
+                <tr>
+                  <td>virus</td>
+                  <td>0.35</td>
+                  <td>Moderate shift</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Figure 1. Semantic Shift from Base Period</div>
+              <div class="figure">
+                <img src="../figures/shift_scores.png" alt="Semantic shift scores">
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Figure 2. Cosine Shift Heatmap</div>
+              <div class="figure">
+                <img src="../figures/shift_heatmap.png" alt="Cosine shift heatmap">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Interpretation and Discussion</div>
+          <div class="panel">
+            <div class="box">
+              <ul>
+                <li><b>model</b> showed the strongest semantic movement.</li>
+                <li><b>network</b> shifted toward media, political, business, and communication contexts.</li>
+                <li><b>platform</b> shifted toward digital, media, social, and communication contexts.</li>
+                <li><b>virus</b> shifted toward disease and pandemic-related contexts in the 2020s.</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Target vs. Control</div>
+              <p class="small">
+                The target-control difference was modest. Therefore, the main conclusion is based on strong
+                individual word shifts rather than a large group-level effect.
+              </p>
+              <div class="figure">
+                <img src="../figures/target_vs_control.png" alt="Target vs control words">
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="box-title">Interactive Demo Example</div>
+              <p><b>network → 0.535 → Strong semantic shift detected</b></p>
+              <p class="small">
+                The Streamlit app allows users to enter a word and view cosine shift, nearest neighbors
+                by period, and shift strength interpretation.
+              </p>
+              <p class="code">streamlit run app.py</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FULL WIDTH BOTTOM -->
+      <div class="section span-2">
+        <div class="section-title">Conclusions and Limitations</div>
+        <div class="panel three-col">
+          <div class="box">
+            <div class="box-title">Conclusions</div>
+            <ul>
+              <li>Temporal Word2Vec embeddings successfully captured interpretable semantic shifts in news texts.</li>
+              <li>The strongest changes were observed for <b>model</b>, <b>network</b>, <b>platform</b>, and <b>virus</b>.</li>
+              <li>Nearest-neighbor analysis supports the cosine-distance measurements.</li>
+              <li>Semantic change can be quantitatively tracked across time slices using aligned embeddings.</li>
+            </ul>
+          </div>
+
+          <div class="box">
+            <div class="box-title">Limitations</div>
+            <ul>
+              <li>The corpus reflects news language rather than general English usage.</li>
+              <li>The 2020s subset is smaller than the 2010s subset.</li>
+              <li>Only two broad time periods were analyzed.</li>
+              <li>Some observed shifts may reflect topic drift rather than pure semantic drift.</li>
+            </ul>
+          </div>
+
+          <div class="box">
+            <div class="box-title">Deliverables</div>
+            <ul>
+              <li>Final Jupyter notebook with the complete workflow.</li>
+              <li>Poster in HTML/PDF format.</li>
+              <li>Saved CSV results and visualizations.</li>
+              <li>Interactive Streamlit application.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      NLP Case Study · Dynamic Embeddings for Temporal Language Change · News Category Dataset · Word2Vec + Procrustes Alignment
+    </div>
+
+  </div>
+</body>
+</html>
